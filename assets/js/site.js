@@ -6,6 +6,9 @@
   const products = Array.isArray(config.products) ? config.products.filter(Boolean) : [];
   const wallets = Array.isArray(config.wallets) ? config.wallets.filter(Boolean) : [];
   const selectedProduct = products.find((product) => product.id === params.get("product")) || products[0] || null;
+  const isLocalHost = ["localhost", "127.0.0.1"].includes(window.location.hostname) || window.location.protocol === "file:";
+  const normalizeSegment = (value) => String(value || "").replace(/^\/+|\/+$/g, "");
+  const basePath = isLocalHost ? "" : normalizeSegment(config.siteBasePath);
 
   const setText = (id, value) => {
     const node = document.getElementById(id);
@@ -19,7 +22,9 @@
   };
 
   const createSiteUrl = (path, options) => {
-    const url = new URL(path || "/", window.location.origin);
+    const cleanPath = `/${normalizeSegment(path || "/")}`.replace(/\/$/, "");
+    const pathname = cleanPath === "" ? "/" : `${basePath ? `/${basePath}` : ""}${cleanPath === "/" ? "/" : `${cleanPath}/`.replace(/\/{2,}/g, "/")}`.replace(/\/{2,}/g, "/");
+    const url = new URL(pathname, window.location.origin);
     if (source) {
       url.searchParams.set("source", source);
     }

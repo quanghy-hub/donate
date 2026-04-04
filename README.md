@@ -9,6 +9,7 @@ Static crypto support and premium landing page in `D:\Portable\github\donate`.
 - No auto entitlement
 - The extension only opens this site
 - Premium is modeled as a future one-time unlock
+- GitHub Pages is the default deployment target
 
 ## Files
 
@@ -27,6 +28,7 @@ Edit `assets/js/config.js`:
 ```js
 window.DONATE_CONFIG = {
   siteTitle: "Extension Premium",
+  siteBasePath: "/donate",
   supportUrlPath: "/",
   unlockUrlPath: "/unlock/",
   products: [
@@ -56,6 +58,7 @@ Fields to update:
 
 - `supportUrlPath`: home path
 - `unlockUrlPath`: unlock path
+- `siteBasePath`: project-site prefix on GitHub Pages
 - `products[]`: premium plans
 - `wallets[]`: payment wallets
 - `qrValue`: falls back to `address` if missing
@@ -74,6 +77,13 @@ GET /?source=extension
 GET /unlock/?source=extension&product=premium-lifetime
 ```
 
+Production URLs on GitHub Pages:
+
+```text
+https://quanghy-hub.github.io/donate/?source=extension
+https://quanghy-hub.github.io/donate/unlock/?source=extension&product=premium-lifetime
+```
+
 Example:
 
 ```js
@@ -87,35 +97,39 @@ chrome.tabs.create({
 
 ## Deploy GitHub Pages
 
-### Root site or custom domain
+This repo is configured for the project site:
 
-Keep:
-
-- `supportUrlPath: "/"`
-- `unlockUrlPath: "/unlock/"`
-
-### Project site
-
-If the URL is `https://<user>.github.io/donate/`, use:
-
-```js
-supportUrlPath: "/donate/",
-unlockUrlPath: "/donate/unlock/"
+```text
+https://quanghy-hub.github.io/donate/
 ```
 
-Then:
+Current config:
 
-1. Push the files in `donate`.
-2. Enable GitHub Pages for the correct branch/folder.
-3. Open:
-   - `https://<user>.github.io/donate/`
-   - `https://<user>.github.io/donate/unlock/`
+```js
+siteBasePath: "/donate",
+supportUrlPath: "/",
+unlockUrlPath: "/unlock/"
+```
+
+Local development still works at:
+
+```text
+http://127.0.0.1:8080/
+http://127.0.0.1:8080/unlock/
+```
+
+Deployment:
+
+1. Push to `main`.
+2. In GitHub, enable Pages with `GitHub Actions` as the source.
+3. The included workflow deploys the site automatically.
 
 ## Validation
 
 - Open the home page directly
 - Open home with `?source=extension`
 - Open `/unlock/?source=extension&product=premium-lifetime`
+- Open the production Pages URL after deployment
 - Test copy address
 - Test QR render
 - Test empty states for missing `wallets` or `products`

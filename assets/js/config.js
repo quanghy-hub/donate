@@ -1,6 +1,7 @@
 (function () {
   window.DONATE_CONFIG = {
     siteTitle: "Extension Premium",
+    siteBasePath: "/donate",
     supportUrlPath: "/",
     unlockUrlPath: "/unlock/",
     products: [
