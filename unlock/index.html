@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unlock Premium</title>
+  <meta name="description" content="Static crypto payment page for a one-time premium unlock flow.">
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body data-page="unlock">
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" data-link="support" href="/">
+        <span class="brand-mark">GX</span>
+        <span class="brand-copy">
+          <strong>Premium Unlock</strong>
+          <small>Static payment flow</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Unlock navigation">
+        <a data-link="support" href="/">Home</a>
+        <a data-link="support" data-hash="wallets-title" href="/#wallets-title">Wallets</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero hero-tight">
+        <div class="hero-copy">
+          <p id="source-badge" class="eyebrow" hidden>Opened from extension</p>
+          <p class="eyebrow">One-time unlock</p>
+          <h1 id="unlock-title">One payment. One premium path.</h1>
+          <p id="unlock-intro" class="hero-text">
+            Pick a network, send the payment, and keep the tx hash. This page does not unlock anything automatically yet.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" data-link="support" href="/">Back to home</a>
+            <a class="button button-secondary" href="#unlock-wallets">View wallets</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <div class="signal-card signal-card-accent">
+            <span class="signal-label">Selected product</span>
+            <strong id="selected-product-name">Loading...</strong>
+            <p id="selected-product-note">Loading product details.</p>
+            <p id="selected-product-amount" class="amount-pill">Suggested: --</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section-grid" aria-labelledby="picker-title">
+        <div class="section-head">
+          <p class="eyebrow">Product</p>
+          <h2 id="picker-title">Available plans</h2>
+          <p id="products-empty" class="empty-state" hidden>No premium plans configured.</p>
+        </div>
+        <div id="product-picker" class="product-picker" aria-live="polite"></div>
+      </section>
+
+      <section class="section-grid" aria-labelledby="steps-title">
+        <div class="section-head">
+          <p class="eyebrow">Flow</p>
+          <h2 id="steps-title">How it works</h2>
+        </div>
+        <div class="steps-grid">
+          <article class="step-card">
+            <span>01</span>
+            <h3>Pick a plan</h3>
+            <p>The selected plan is controlled by the `product` query param.</p>
+          </article>
+          <article class="step-card">
+            <span>02</span>
+            <h3>Pay on the right chain</h3>
+            <p>Wrong token or wrong network means lost funds and no refund.</p>
+          </article>
+          <article class="step-card">
+            <span>03</span>
+            <h3>Save the tx hash</h3>
+            <p>You will need it later if this becomes a manual or verified unlock flow.</p>
+          </article>
+          <article class="step-card">
+            <span>04</span>
+            <h3>Wait for licensing later</h3>
+            <p>This page is payment-only for now. License delivery is a future phase.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="unlock-wallets" class="section-grid" aria-labelledby="wallets-title">
+        <div class="section-head">
+          <p class="eyebrow">Payment</p>
+          <h2 id="wallets-title">Wallets by network</h2>
+          <p class="section-note">
+            Each wallet card shows the token, network, QR code, address, and warning.
+          </p>
+          <p id="wallets-empty" class="empty-state" hidden>No wallets configured.</p>
+        </div>
+        <div id="wallet-grid" class="wallet-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="section-grid" aria-labelledby="summary-title">
+        <div class="section-head">
+          <p class="eyebrow">Contract</p>
+          <h2 id="summary-title">Extension URLs</h2>
+        </div>
+        <div class="summary-card">
+          <p><strong>Home:</strong> <code id="extension-contract-home">/?source=extension</code></p>
+          <p><strong>Unlock:</strong> <code id="extension-contract-unlock">/unlock/?source=extension&amp;product=premium-lifetime</code></p>
+          <p><strong>Note:</strong> The extension should only open this page. Do not trust `chrome.storage.local` as real premium proof without a backend.</p>
+        </div>
+      </section>
+
+      <section class="section-grid" aria-labelledby="faq-title">
+        <div class="section-head">
+          <p class="eyebrow">FAQ</p>
+          <h2 id="faq-title">Current limits</h2>
+        </div>
+        <div class="faq-grid">
+          <article class="faq-card">
+            <h3>Does payment unlock instantly?</h3>
+            <p>No. This version does not issue entitlements on the client side.</p>
+          </article>
+          <article class="faq-card">
+            <h3>How do I add manual unlock?</h3>
+            <p>Add a tx hash form and a small backend for review.</p>
+          </article>
+          <article class="faq-card">
+            <h3>How do I add auto unlock?</h3>
+            <p>Add a backend that verifies payment and returns a real license.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

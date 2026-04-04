@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Extension Premium</title>
+  <meta name="description" content="Static crypto donate and premium landing page for an extension.">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="home">
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" data-link="support" href="/">
+        <span class="brand-mark">GX</span>
+        <span class="brand-copy">
+          <strong>Extension Premium</strong>
+          <small>Crypto support and one-time unlock</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a data-link="support" data-hash="support" href="#support">Donate</a>
+        <a data-link="unlock" data-product-link href="/unlock/">Unlock Premium</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p id="source-badge" class="eyebrow" hidden>Opened from extension</p>
+          <p class="eyebrow">Crypto-native premium funnel</p>
+          <h1 id="hero-title">Keep free access. Add a simple premium path.</h1>
+          <p id="hero-text" class="hero-text">
+            Accept optional crypto support or a one-time premium payment.
+            No backend. No auto unlock. Payments go straight to your wallet.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" data-link="unlock" data-product-link href="/unlock/">Unlock Premium</a>
+            <a class="button button-secondary" data-link="support" data-hash="support" href="#support">Send Support</a>
+          </div>
+          <ul class="hero-points">
+            <li>No payment processor</li>
+            <li>Extension deep-link ready</li>
+            <li>Easy to upgrade later</li>
+          </ul>
+        </div>
+
+        <aside class="hero-panel">
+          <div class="signal-card">
+            <span class="signal-label">Current status</span>
+            <strong>Premium-ready</strong>
+            <p>Payment funnel and deep-link contract are ready. Auto verification is not included.</p>
+          </div>
+          <div class="signal-card signal-card-accent">
+            <span class="signal-label">For extension</span>
+            <code id="extension-contract-home">/?source=extension</code>
+            <code id="extension-contract-unlock">/unlock/?source=extension&amp;product=premium-lifetime</code>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section-grid" aria-labelledby="paths-title">
+        <div class="section-head">
+          <p class="eyebrow">Three paths</p>
+          <h2 id="paths-title">Free, Support, Premium</h2>
+        </div>
+        <div class="path-grid">
+          <article class="path-card">
+            <span class="path-tag">Free</span>
+            <h3>Stay free</h3>
+            <p>Use the core extension with no payment.</p>
+            <ul>
+              <li>No checkout</li>
+              <li>No account needed</li>
+              <li>Best for general users</li>
+            </ul>
+          </article>
+          <article id="support" class="path-card">
+            <span class="path-tag">Support</span>
+            <h3>Optional support</h3>
+            <p>Send crypto to support the project. No unlock attached.</p>
+            <ul>
+              <li>No feature unlock</li>
+              <li>Simple sponsor flow</li>
+              <li>Direct wallet payment</li>
+            </ul>
+          </article>
+          <article class="path-card path-card-featured">
+            <span class="path-tag">Premium</span>
+            <h3>One-time unlock</h3>
+            <p>Collect a one-time crypto payment for a future premium unlock flow.</p>
+            <ul>
+              <li>Designed for lifetime unlock</li>
+              <li>Dedicated payment page</li>
+              <li>Can scale to real licensing later</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-grid" aria-labelledby="comparison-title">
+        <div class="section-head">
+          <p class="eyebrow">Quick compare</p>
+          <h2 id="comparison-title">Free vs support vs premium</h2>
+        </div>
+        <div class="comparison-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Free</th>
+                <th>Support</th>
+                <th>Premium</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Core extension access</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>Payment required</td>
+                <td>No</td>
+                <td>Optional</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>Auto entitlement</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Not yet</td>
+              </tr>
+              <tr>
+                <td>Main goal</td>
+                <td>Use it</td>
+                <td>Support it</td>
+                <td>Unlock later</td>
+              </tr>
+              <tr>
+                <td>Keep tx hash</td>
+                <td>No</td>
+                <td>Optional</td>
+                <td>Recommended</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section-grid" aria-labelledby="products-title">
+        <div class="section-head">
+          <p class="eyebrow">Product</p>
+          <h2 id="products-title">Available premium plans</h2>
+          <p id="products-empty" class="empty-state" hidden>No premium plans configured.</p>
+        </div>
+        <div id="product-grid" class="product-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="section-grid" aria-labelledby="wallets-title">
+        <div class="section-head">
+          <p class="eyebrow">Wallets</p>
+          <h2 id="wallets-title">Pay with crypto</h2>
+          <p class="section-note">
+            Send the correct token on the correct network. This page does not verify payments or issue refunds.
+          </p>
+          <p id="wallets-empty" class="empty-state" hidden>No wallets configured.</p>
+        </div>
+        <div id="wallet-grid" class="wallet-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="section-grid" aria-labelledby="faq-title">
+        <div class="section-head">
+          <p class="eyebrow">FAQ</p>
+          <h2 id="faq-title">Before you pay</h2>
+        </div>
+        <div class="faq-grid">
+          <article class="faq-card">
+            <h3>What can I pay with?</h3>
+            <p>Default wallets use common stablecoin networks like USDT TRC20 and USDT BEP20.</p>
+          </article>
+          <article class="faq-card">
+            <h3>Are refunds available?</h3>
+            <p>No. Wrong network, wrong token, or confirmed crypto transfers are treated as final.</p>
+          </article>
+          <article class="faq-card">
+            <h3>When does unlock happen?</h3>
+            <p>This version is only the payment funnel. Licensing and auto unlock come later.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
