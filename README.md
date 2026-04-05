@@ -42,12 +42,12 @@ window.DONATE_CONFIG = {
   ],
   wallets: [
     {
-      id: "usdt-trc20",
-      token: "USDT",
-      network: "TRC20",
+      id: "trx-tron",
+      token: "TRX",
+      network: "TRON",
       address: "YOUR_REAL_ADDRESS",
       qrValue: "YOUR_REAL_ADDRESS",
-      warning: "Send USDT on TRC20 only.",
+      warning: "Send the native asset on the exact network only.",
       featured: true
     }
   ]
@@ -62,6 +62,13 @@ Fields to update:
 - `products[]`: premium plans
 - `wallets[]`: payment wallets
 - `qrValue`: falls back to `address` if missing
+
+Current live wallet set includes:
+
+- `TRX` on `TRON`
+- `BNB` on `BNB Smart Chain`
+- `SOL` on `Solana`
+- `AVAX` on `Avalanche C-Chain`
 
 ## Extension contract
 
