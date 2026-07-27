@@ -1,0 +1,21 @@
+{
+  "name": "donate-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static crypto support and premium landing page with Ko-fi style UI and Vibe Coding tooling",
+  "scripts": {
+    "lint": "eslint assets/js/*.js && stylelint assets/css/*.css",
+    "format": "prettier --check \"**/*.{html,css,js,json,md}\"",
+    "fix": "prettier --write \"**/*.{html,css,js,json,md}\" && eslint --fix assets/js/*.js && stylelint --fix assets/css/*.css",
+    "check": "npm run lint && npm run format",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "eslint": "^9.20.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.5.1",
+    "stylelint": "^16.14.1",
+    "stylelint-config-standard": "^37.0.0"
+  }
+}

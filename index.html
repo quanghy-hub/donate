@@ -1,199 +1,163 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Extension Premium</title>
-  <meta name="description" content="Static crypto donate and premium landing page for an extension.">
-  <link rel="stylesheet" href="assets/css/site.css">
-</head>
-<body data-page="home">
-  <div class="page-shell">
-    <header class="site-header">
-      <a class="brand" data-link="support" href="/">
-        <span class="brand-mark">GX</span>
-        <span class="brand-copy">
-          <strong>Extension Premium</strong>
-          <small>Crypto support and one-time unlock</small>
-        </span>
-      </a>
-      <nav class="site-nav" aria-label="Main navigation">
-        <a data-link="support" data-hash="support" href="#support">Donate</a>
-        <a data-link="unlock" data-product-link href="/unlock/">Unlock Premium</a>
-      </nav>
-    </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Extension Premium | Support &amp; Unlock</title>
+    <meta
+      name="description"
+      content="Support extension development or unlock lifetime premium via crypto."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/site.css" />
+  </head>
+  <body data-page="home">
+    <div class="kofi-backdrop">
+      <div class="kofi-ambient-glow"></div>
+    </div>
 
-    <main>
-      <section class="hero">
-        <div class="hero-copy">
-          <p id="source-badge" class="eyebrow" hidden>Opened from extension</p>
-          <p class="eyebrow">Crypto-native premium funnel</p>
-          <h1 id="hero-title">Keep free access. Add a simple premium path.</h1>
-          <p id="hero-text" class="hero-text">
-            Accept optional crypto support or a one-time premium payment.
-            No backend. No auto unlock. Payments go straight to your wallet.
+    <main class="kofi-wrapper">
+      <article class="kofi-card">
+        <header class="kofi-header">
+          <div class="creator-avatar">
+            <span class="avatar-text">GX</span>
+            <span class="online-indicator"></span>
+          </div>
+          <h1 class="creator-name" id="site-title">Extension Premium</h1>
+          <p class="creator-bio" id="site-subtitle">
+            Support extension development or unlock lifetime features.
           </p>
-          <div class="hero-actions">
-            <a class="button button-primary" data-link="unlock" data-product-link href="/unlock/">Unlock Premium</a>
-            <a class="button button-secondary" data-link="support" data-hash="support" href="#support">Send Support</a>
+
+          <div id="extension-badge" class="badge badge-extension" hidden>
+            <svg
+              class="badge-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+            Opened from Extension
           </div>
-          <ul class="hero-points">
-            <li>No payment processor</li>
-            <li>Extension deep-link ready</li>
-            <li>Easy to upgrade later</li>
-          </ul>
-        </div>
+        </header>
 
-        <aside class="hero-panel">
-          <div class="signal-card">
-            <span class="signal-label">Current status</span>
-            <strong>Premium-ready</strong>
-            <p>Payment funnel and deep-link contract are ready. Auto verification is not included.</p>
+        <div class="plan-section">
+          <div class="plan-tabs" role="tablist" aria-label="Select Plan">
+            <button
+              class="plan-tab is-active"
+              id="tab-support"
+              role="tab"
+              aria-selected="true"
+              data-plan="support"
+            >
+              <span class="tab-icon">☕</span>
+              <span class="tab-label">Support</span>
+            </button>
+            <button
+              class="plan-tab"
+              id="tab-unlock"
+              role="tab"
+              aria-selected="false"
+              data-plan="premium-lifetime"
+            >
+              <span class="tab-icon">⚡</span>
+              <span class="tab-label">Lifetime $9</span>
+            </button>
           </div>
-          <div class="signal-card signal-card-accent">
-            <span class="signal-label">For extension</span>
-            <code id="extension-contract-home">/?source=extension</code>
-            <code id="extension-contract-unlock">/unlock/?source=extension&amp;product=premium-lifetime</code>
-          </div>
-        </aside>
-      </section>
-
-      <section class="section-grid" aria-labelledby="paths-title">
-        <div class="section-head">
-          <p class="eyebrow">Three paths</p>
-          <h2 id="paths-title">Free, Support, Premium</h2>
-        </div>
-        <div class="path-grid">
-          <article class="path-card">
-            <span class="path-tag">Free</span>
-            <h3>Stay free</h3>
-            <p>Use the core extension with no payment.</p>
-            <ul>
-              <li>No checkout</li>
-              <li>No account needed</li>
-              <li>Best for general users</li>
-            </ul>
-          </article>
-          <article id="support" class="path-card">
-            <span class="path-tag">Support</span>
-            <h3>Optional support</h3>
-            <p>Send crypto to support the project. No unlock attached.</p>
-            <ul>
-              <li>No feature unlock</li>
-              <li>Simple sponsor flow</li>
-              <li>Direct wallet payment</li>
-            </ul>
-          </article>
-          <article class="path-card path-card-featured">
-            <span class="path-tag">Premium</span>
-            <h3>One-time unlock</h3>
-            <p>Collect a one-time crypto payment for a future premium unlock flow.</p>
-            <ul>
-              <li>Designed for lifetime unlock</li>
-              <li>Dedicated payment page</li>
-              <li>Can scale to real licensing later</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section class="section-grid" aria-labelledby="comparison-title">
-        <div class="section-head">
-          <p class="eyebrow">Quick compare</p>
-          <h2 id="comparison-title">Free vs support vs premium</h2>
-        </div>
-        <div class="comparison-wrap">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th>Item</th>
-                <th>Free</th>
-                <th>Support</th>
-                <th>Premium</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Core extension access</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td>Yes</td>
-              </tr>
-              <tr>
-                <td>Payment required</td>
-                <td>No</td>
-                <td>Optional</td>
-                <td>Yes</td>
-              </tr>
-              <tr>
-                <td>Auto entitlement</td>
-                <td>No</td>
-                <td>No</td>
-                <td>Not yet</td>
-              </tr>
-              <tr>
-                <td>Main goal</td>
-                <td>Use it</td>
-                <td>Support it</td>
-                <td>Unlock later</td>
-              </tr>
-              <tr>
-                <td>Keep tx hash</td>
-                <td>No</td>
-                <td>Optional</td>
-                <td>Recommended</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="section-grid" aria-labelledby="products-title">
-        <div class="section-head">
-          <p class="eyebrow">Product</p>
-          <h2 id="products-title">Available premium plans</h2>
-          <p id="products-empty" class="empty-state" hidden>No premium plans configured.</p>
-        </div>
-        <div id="product-grid" class="product-grid" aria-live="polite"></div>
-      </section>
-
-      <section class="section-grid" aria-labelledby="wallets-title">
-        <div class="section-head">
-          <p class="eyebrow">Wallets</p>
-          <h2 id="wallets-title">Pay with crypto</h2>
-          <p class="section-note">
-            Send the correct token on the correct network. This page does not verify payments or issue refunds.
+          <p class="plan-description" id="plan-desc">
+            Send optional crypto support to fuel ongoing development.
           </p>
-          <p id="wallets-empty" class="empty-state" hidden>No wallets configured.</p>
         </div>
-        <div id="wallet-grid" class="wallet-grid" aria-live="polite"></div>
-      </section>
 
-      <section class="section-grid" aria-labelledby="faq-title">
-        <div class="section-head">
-          <p class="eyebrow">FAQ</p>
-          <h2 id="faq-title">Before you pay</h2>
+        <div class="wallet-section">
+          <label class="section-label">Select Crypto Network</label>
+          <div class="network-selector" id="network-selector" role="radiogroup">
+            <!-- Dynamically populated wallet buttons -->
+          </div>
+
+          <div class="wallet-box">
+            <div class="wallet-header">
+              <div class="wallet-title">
+                <span class="token-symbol" id="active-token">TRX</span>
+                <span class="network-badge" id="active-network">TRON</span>
+              </div>
+              <span class="suggested-pill" id="suggested-pill">Suggested: Flexible</span>
+            </div>
+
+            <div class="qr-container">
+              <div class="qr-frame" id="qr-frame"></div>
+            </div>
+
+            <div class="address-group">
+              <div class="address-box">
+                <code class="address-text" id="active-address">Loading address...</code>
+              </div>
+              <button type="button" class="copy-btn" id="copy-btn">
+                <svg
+                  class="copy-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span id="copy-btn-text">Copy Address</span>
+              </button>
+            </div>
+
+            <p class="warning-text" id="active-warning">
+              Send exact token on the matching network only.
+            </p>
+          </div>
         </div>
-        <div class="faq-grid">
-          <article class="faq-card">
-            <h3>What can I pay with?</h3>
-            <p>Current wallets accept native assets on TRON, BNB Smart Chain, Solana, and Avalanche C-Chain.</p>
-          </article>
-          <article class="faq-card">
-            <h3>Are refunds available?</h3>
-            <p>No. Wrong network, wrong token, or confirmed crypto transfers are treated as final.</p>
-          </article>
-          <article class="faq-card">
-            <h3>When does unlock happen?</h3>
-            <p>This version is only the payment funnel. Licensing and auto unlock come later.</p>
-          </article>
-        </div>
-      </section>
+
+        <details class="contract-drawer">
+          <summary class="drawer-trigger">
+            <span>Extension Deep-Link Contract</span>
+            <svg
+              class="chevron-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="drawer-content">
+            <p>Support URL: <code id="contract-home">/?source=extension</code></p>
+            <p>
+              Unlock URL:
+              <code id="contract-unlock"
+                >/unlock/?source=extension&amp;product=premium-lifetime</code
+              >
+            </p>
+            <small
+              >Note: Extension deep-links pass source and product parameters without client-side
+              state assumptions.</small
+            >
+          </div>
+        </details>
+
+        <footer class="kofi-footer">
+          <p>Direct peer-to-peer crypto payment. No third-party fee.</p>
+        </footer>
+      </article>
     </main>
-  </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
-  <script src="assets/js/config.js"></script>
-  <script src="assets/js/site.js"></script>
-</body>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/site.js"></script>
+  </body>
 </html>
