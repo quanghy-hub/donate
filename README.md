@@ -1,78 +1,54 @@
-# Donate / Premium Landing
+# Donate / Premium Landing (Ko-fi Single-Screen UI)
 
-Static crypto support and premium landing page in `D:\Portable\github\donate`.
+Static crypto support and premium landing page with Ko-fi 1-screen UI and Vibe Coding automated workflow tooling.
 
-## Current scope
+## Features
 
-- No backend
-- No auth
-- No auto entitlement
-- The extension only opens this site
-- Premium is modeled as a future one-time unlock
-- GitHub Pages is the default deployment target
+- **Ko-fi Style 1-Screen UI**: Centered modern card layout with preset plan tabs, crypto network selector, live QR code, 1-click address copy, and extension deep-link contract info.
+- **Vibe Coding Automated Tooling**: Prettier formatting, ESLint v9 linting, Stylelint CSS checking, Makefile commands, and Husky pre-commit hooks.
+- **Crypto Support**: Direct peer-to-peer wallet support for TRX (TRON), BNB (BSC), SOL (Solana), and AVAX (Avalanche).
 
-## Files
+## Vibe Coding Commands
 
-- `index.html`: home page
-- `unlock/index.html`: payment page
-- `assets/js/config.js`: public config
-- `assets/js/site.js`: rendering, deep-links, QR, copy
-- `assets/css/site.css`: styles
-
-QR is rendered with `qrcodejs` from CDNJS at runtime. No build step is required.
-
-## Update wallet data
-
-Edit `assets/js/config.js`:
-
-```js
-window.DONATE_CONFIG = {
-  siteTitle: "Extension Premium",
-  siteBasePath: "/donate",
-  supportUrlPath: "/",
-  unlockUrlPath: "/unlock/",
-  products: [
-    {
-      id: "premium-lifetime",
-      label: "Premium Lifetime",
-      kind: "one_time_unlock",
-      suggestedAmountUsd: 9,
-      note: "One payment for a future lifetime unlock flow."
-    }
-  ],
-  wallets: [
-    {
-      id: "trx-tron",
-      token: "TRX",
-      network: "TRON",
-      address: "YOUR_REAL_ADDRESS",
-      qrValue: "YOUR_REAL_ADDRESS",
-      warning: "Send the native asset on the exact network only.",
-      featured: true
-    }
-  ]
-};
+```bash
+make install     # Install npm dependencies & setup Git pre-commit hooks
+make check       # Run full Linter + Formatter checks
+make fix         # Auto-fix linting & formatting issues
+make dev         # Launch local dev server at http://localhost:8080
+make tunnel      # Create instant public HTTPS URL via Cloudflare Tunnel
+make deploy-cf   # Deploy directly to Cloudflare Pages via Wrangler
 ```
 
-Fields to update:
+## Cloudflare Setup & Deployment
 
-- `supportUrlPath`: home path
-- `unlockUrlPath`: unlock path
-- `siteBasePath`: project-site prefix on GitHub Pages
-- `products[]`: premium plans
-- `wallets[]`: payment wallets
-- `qrValue`: falls back to `address` if missing
+### Option 1: Temporary Cloudflare Tunnel (For Instant Testing)
 
-Current live wallet set includes:
+Publicly expose your local development server with a temporary HTTPS Cloudflare URL:
 
-- `TRX` on `TRON`
-- `BNB` on `BNB Smart Chain`
-- `SOL` on `Solana`
-- `AVAX` on `Avalanche C-Chain`
+```bash
+make tunnel
+```
 
-## Extension contract
+### Option 2: Cloudflare Pages Auto-Deploy (Recommended)
 
-Supported query params:
+1. Push your repository to GitHub (`main` branch).
+2. Go to [Cloudflare Dashboard](https://dash.cloudflare.com/) -> **Workers & Pages** -> **Create application** -> **Pages**.
+3. Select **Connect to Git** and pick repository `quanghy-hub/donate`.
+4. Configure Build settings:
+   - **Framework preset**: `None`
+   - **Build command**: `make check` (or leave blank)
+   - **Build output directory**: `.`
+5. Click **Save and Deploy**. Cloudflare will automatically build and deploy every `git push`.
+
+### Option 3: Cloudflare Pages CLI Deploy
+
+```bash
+make deploy-cf
+```
+
+## Extension Contract
+
+Supported query parameters:
 
 - `source=extension`
 - `product=<slug>`
@@ -83,88 +59,3 @@ Recommended URLs:
 GET /?source=extension
 GET /unlock/?source=extension&product=premium-lifetime
 ```
-
-Production URLs on GitHub Pages:
-
-```text
-https://quanghy-hub.github.io/donate/?source=extension
-https://quanghy-hub.github.io/donate/unlock/?source=extension&product=premium-lifetime
-```
-
-Example:
-
-```js
-chrome.tabs.create({
-  url: "https://your-domain.example/unlock/?source=extension&product=premium-lifetime",
-  active: true
-});
-```
-
-`source=extension` only changes page copy and context.
-
-## Deploy GitHub Pages
-
-This repo is configured for the project site:
-
-```text
-https://quanghy-hub.github.io/donate/
-```
-
-Current config:
-
-```js
-siteBasePath: "/donate",
-supportUrlPath: "/",
-unlockUrlPath: "/unlock/"
-```
-
-Local development still works at:
-
-```text
-http://127.0.0.1:8080/
-http://127.0.0.1:8080/unlock/
-```
-
-Deployment:
-
-1. Push to `main`.
-2. In GitHub, enable Pages with `GitHub Actions` as the source.
-3. The included workflow deploys the site automatically.
-
-## Validation
-
-- Open the home page directly
-- Open home with `?source=extension`
-- Open `/unlock/?source=extension&product=premium-lifetime`
-- Open the production Pages URL after deployment
-- Test copy address
-- Test QR render
-- Test empty states for missing `wallets` or `products`
-- Test narrow viewports
-
-## Current limits
-
-- No on-chain verification
-- No tx hash submission flow
-- No manual review flow
-- No license service
-- Do not treat `chrome.storage.local` as real premium proof
-
-## Next upgrades
-
-### Manual unlock
-
-Add:
-
-- tx hash form
-- email / Telegram / device code
-- small backend for review state
-
-### Auto unlock
-
-Add:
-
-- backend payment verification
-- license / entitlement issuing
-- endpoint for extension sync
-- extension UI for trial / paid / expired / revoked
